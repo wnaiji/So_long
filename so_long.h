@@ -6,7 +6,7 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:38:50 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/05 18:21:21 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/06 18:44:25 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@ typedef struct s_list
 {
 	char			*line;
 	struct s_list	*next;
+
 }	t_list;
 
 //Verification du file descriteur:
-//ft_strtrim.c
-char	*ft_strtrim(const char *s, const char *set);
 //pars_ber.c
 char	*ft_check_ber(char *str);
 //ft_check_fd.c
-int	ft_check_fd(int fd, char *name_fd);
+int		ft_check_fd(int *fd, char *name_fd);
 
 //Quelque sortie d'erreur:
 //exit_error.c
 void	ft_error_closed(void);
 void	ft_error_rectangle(void);
+void	ft_error_file(void);
 
 //Gestion de la liste chaine:
 //ft_list.c
@@ -48,6 +48,9 @@ char	*ft_last_content(t_list *list);
 //Outils de la Libft:
 //outils_libft.c
 void	ft_putstr(char *str);
+int 	ft_lstsize(t_list *lst);
+//ft_strtrim.c
+char	*ft_strtrim(const char *s, const char *set);
 
 //Verification de la Map:
 //ft_check_map.c
@@ -58,7 +61,9 @@ void	ft_check_map_is_retangle(t_list *map);
 void	ft_check_map_is_closed(t_list *map);
 //ft_analysis_map.c
 void	ft_check_map(int fd);
-int	ft_height_map(int fd);
+int		ft_height_map(int fd);
 void	ft_analysis_map(t_list *map);
+//ft_flood_fill.c
+//void	ft_where_is_P(t_list *map, int *x, int *y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:39:39 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/05 15:57:16 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/06 19:01:46 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,17 @@ void	ft_putstr(char *str)
 	i = 0;
 	while (str[i])
 		ft_putchar(str[i++]);
+}
+
+int ft_lstsize(t_list *lst)
+{
+    int i;
+
+    i = 0;
+    while (lst)
+    {
+        lst = lst->next;
+        i++;
+    }
+    return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:20:30 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/05 16:20:53 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/06 20:13:33 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ char	*ft_last_content(t_list *list)
 
 	tmp = list;
 	if (!list)
-		return (0);
+		return (NULL);
 	while (tmp->next)
 		tmp = tmp->next;
 	return (tmp->line);

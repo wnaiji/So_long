@@ -6,7 +6,7 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:40:09 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/05 18:19:43 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/06 17:50:34 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,11 @@ void	ft_error_closed(void)
 void	ft_error_rectangle(void)
 {
 	ft_putstr("Error: The map is not rectangle\n");
+	exit(EXIT_FAILURE);
+}
+
+void	ft_error_file(void)
+{
+	ft_putstr("Error: The file is empty\n");
 	exit(EXIT_FAILURE);
 }
