@@ -6,7 +6,7 @@
 /*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:35:37 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/07 20:51:49 by walidnaiji       ###   ########.fr       */
+/*   Updated: 2023/06/07 23:26:14 by walidnaiji       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,20 @@ void	ft_check_map(int fd)
 	ft_analysis_map(map);
 	mapcpy = ft_map_cpy(map);
 	flood_fill(mapcpy);
+	ft_check_access(mapcpy);
+	ft_free_mapcpy(mapcpy);
+	print_map(mapcpy);
+}
+
+void	ft_free_mapcpy(t_list *map)
+{
+	while (map)
+		map = map->prev;
+	while (map)
+	{
+		free(map->line);
+		map = ft_delete_in_head(map);
+		map = map->next;
+	}
+
 }

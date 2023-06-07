@@ -6,7 +6,7 @@
 /*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:38:50 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/07 21:51:37 by walidnaiji       ###   ########.fr       */
+/*   Updated: 2023/06/07 23:16:30 by walidnaiji       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ int		ft_check_fd(int *fd, char *name_fd);
 void	ft_error_closed(void);
 void	ft_error_rectangle(void);
 void	ft_error_file(void);
+void	ft_no_exit_access(void);
+void	ft_no_access_collec(void);
 
 //Gestion de la liste chaine:
 //ft_list.c
@@ -69,11 +71,13 @@ void	ft_check_map_is_closed(t_list *map);
 void	ft_check_map(int fd);
 int		ft_height_map(int fd);
 void	ft_analysis_map(t_list *map);
+void	ft_free_mapcpy(t_list *map);
 //ft_flood_fill.c
 t_point	ft_where_is_P(t_list **map, int *x, int *y);
 t_list	*ft_map_cpy(t_list *map);
 void	flood_fill(t_list *mapcpy);
 void	ft_fill_mapcpy_1(t_list *mapcpy, t_point size, t_point target, int x, int y);
+void	ft_check_access(t_list *map);
 
 //Impression de la map:
 void	print_map(t_list *map);
