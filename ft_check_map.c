@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 15:49:34 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/05 18:34:35 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/07 13:56:25 by walidnaiji       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_check_map_is_closed(t_list *map)
 		i++;
 	}
 	tmp = tmp->next;
-	while (tmp->next)
+	while (tmp->next->next)
 	{
 		if ((tmp->line[0] != '1') || (tmp->line[ft_strlen(tmp->line) - 2] != '1'))
 			ft_error_closed();
@@ -48,7 +48,7 @@ void	ft_check_map_is_retangle(t_list *map)
 
 	tmp = map;
 	first_line = ft_strlen(tmp->line);
-	while (tmp->next)
+	while (tmp->next->next)
 	{
 		if (first_line != ft_strlen(tmp->line))
 			ft_error_rectangle();
@@ -71,7 +71,7 @@ void	ft_check_person(t_list *map)
 
 	tmp = map;
 	person = 0;
-	while (tmp)
+	while (tmp->next)
 	{
 		i = 0;
 		while (tmp->line[i])
@@ -98,7 +98,7 @@ void	ft_check_exit(t_list *map)
 	tmp = map;
 	i = 0;
 	output = 0;
-	while (tmp)
+	while (tmp->next)
 	{
 		i = 0;
 		while (tmp->line[i])
@@ -125,7 +125,7 @@ void	ft_check_collectible(t_list *map)
 	tmp = map;
 	i = 0;
 	collectible = 0;
-	while (tmp)
+	while (tmp->next)
 	{
 		i = 0;
 		while (tmp->line[i])

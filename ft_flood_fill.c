@@ -3,73 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   ft_flood_fill.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:01:25 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/06 18:42:35 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/07 21:49:06 by walidnaiji       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/*void	ft_where_is_P(t_list *map, int *x, int *y)
+t_point	ft_where_is_P(t_list **map, int *x, int *y)
 {
-	t_list	*tmp;
+	t_point	target;
 
-	tmp = map;
 	*y = 0;
-	while (tmp)
+	while (*map)
 	{
 		*x = 0;
-		while (tmp->line[*x])
+		while ((*map)->line[*x])
 		{
-			if (tmp->line[*x] == 'P')
+			if ((*map)->line[*x] == 'P')
 				break;
 			(*x)++;
 		}
-		if (tmp->line[*x] == 'P')
+		if ((*map)->line[*x] == 'P')
 				break;
 		(*y)++;
-		tmp = tmp->next;
+		*map = (*map)->next;
 	}
-}*/
-
-/*char	*ft_put_p_in_axe_x(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == 'P')
-		{
-			if (str[i - 1] != '1')
-				str[i - 1] = 'P';
-			if (str[i + 1] != '1')
-				str[i + 1] = 'P';
-		}
-		i++;
-	}
-	return (str);
+	target.x = *x;
+	target.y = *y;
+	return (target);
 }
 
-void	ft_put_w_in_x_and_y(t_list *map, int x, int y)
+void	ft_fill_mapcpy_1(t_list *mapcpy, t_point size, t_point target, int x, int y)
 {
+	if (mapcpy->line[x] == 'F')
+		return ;
+	if (mapcpy->line[x] != '1')
+		mapcpy->line[x] = 'F';
+	if (mapcpy->prev->line[x] != '1')
+		ft_fill_mapcpy_1(mapcpy = mapcpy->prev, size, target, x, y - 1);
+	if (mapcpy->line[x + 1] != '1')
+		ft_fill_mapcpy_1(mapcpy, size, target, x + 1, y);
+	if (mapcpy->line[x - 1] != '1')
+		ft_fill_mapcpy_1(mapcpy, size, target, x - 1, y);
+	if (mapcpy->next->line[x] != '1')
+		ft_fill_mapcpy_1(mapcpy = mapcpy->next, size, target, x, y + 1);
+	if (mapcpy->line[x - 1] != '1')
+		ft_fill_mapcpy_1(mapcpy, size, target, x - 1, y);
+	if (mapcpy->line[x + 1] != '1')
+		ft_fill_mapcpy_1(mapcpy, size, target, x + 1, y);
+	if (mapcpy->next->line[x] != '1')
+		ft_fill_mapcpy_2(mapcpy = mapcpy->next, size, target, x, y + 1);
+	if (mapcpy->line[x + 1] != '1')
+		ft_fill_mapcpy_2(mapcpy, size, target, x + 1, y);
+	if (mapcpy->line[x - 1] != '1')
+		ft_fill_mapcpy_2(mapcpy, size, target, x - 1, y);
+
+}
+
+void	flood_fill(t_list *mapcpy)
+{
+	t_point	size;
+	t_point	target;
+	int		x;
+	int		y;
+
+	size.y = ft_lstsize(mapcpy);
+	size.x = ft_strlen(mapcpy->line);
+	target = ft_where_is_P(&mapcpy, &x, &y);
+	ft_fill_mapcpy_1(mapcpy, size, target, x, y);
+	print_map(mapcpy);
+}
+
+t_list	*ft_map_cpy(t_list *map)
+{
+	t_list	*mapcpy;
 	t_list	*tmp;
-	int		i;
-	int 	j;
 
 	tmp = map;
-	j = 10;
-	while (j)
+	mapcpy = NULL;
+	while (tmp->next)
 	{
-		tmp = tmp;
-		while (tmp)
-		{
-			i = 0;
-			tmp->line = ft_put_p_in_axe_x(tmp->line);''
-			tmp = tmp->next;
-		}
-		j--;
+		mapcpy = ft_add_back_list(mapcpy, tmp->line);
+		tmp = tmp->next;
 	}
-}*/
+	return (mapcpy);
+}

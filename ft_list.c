@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 11:20:30 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/06 20:13:33 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/07 20:50:37 by walidnaiji       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	*ft_add_front_list(t_list *list, char *line)
 	if (!newline)
 		return (NULL);
 	newline->line = line;
+	newline->prev = NULL;
 	newline->next = list;
 	return (newline);
 }
@@ -34,6 +35,7 @@ void	*ft_add_back_list(t_list *list, char *line)
 	if (!newline)
 		return (NULL);
 	newline->line = line;
+	newline->prev = NULL;
 	newline->next = NULL;
 	if (!list)
 		return (newline);
@@ -42,6 +44,7 @@ void	*ft_add_back_list(t_list *list, char *line)
 		while (tmp->next)
 			tmp = tmp->next;
 		tmp->next = newline;
+		newline->prev = tmp;
 		return (list);
 	}
 }
