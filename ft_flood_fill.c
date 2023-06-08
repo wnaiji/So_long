@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_flood_fill.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:01:25 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/08 14:51:27 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/08 23:20:12 by walidnaiji       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,24 +69,25 @@ void	ft_check_access(t_list *map)
 	t_point	access;
 
 	tmp = map;
+	access.x = 0;
+	access.y = 0;
 	while (tmp->prev)
 		tmp = tmp->prev;
 	while (tmp->next)
 	{
 		i = 0;
-		while (tmp->line[i])
+		while (tmp->line[i++])
 		{
 			if (tmp->line[i] == 'E')
 				access.x = 1;
 			if (tmp->line[i] == 'C')
 				access.y = 1;
-			i++;
 		}
 		tmp = tmp->next;
 	}
-	if (access.x > 0)
+	if (access.x = 1)
 		ft_no_exit_access();
-	if (access.y > 0)
+	if (access.y = 1)
 		ft_no_access_collec();
 }
 
