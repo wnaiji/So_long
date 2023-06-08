@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_analysis_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:35:37 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/07 23:26:14 by walidnaiji       ###   ########.fr       */
+/*   Updated: 2023/06/08 14:42:00 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,10 @@ void	ft_analysis_map(t_list *map)
 	ft_check_map_is_closed(map);
 }
 
-void	ft_check_map(int fd)
+t_list	*ft_check_map(int fd)
 {
 	t_list	*map;
 	t_list	*mapcpy;
-
-	//int		x;
-	//int		y;
 
 	map = NULL;
 	map = ft_add_front_list(map, get_next_line(fd));
@@ -50,18 +47,19 @@ void	ft_check_map(int fd)
 	flood_fill(mapcpy);
 	ft_check_access(mapcpy);
 	ft_free_mapcpy(mapcpy);
-	print_map(mapcpy);
+	return (map);
 }
 
 void	ft_free_mapcpy(t_list *map)
 {
-	while (map)
-		map = map->prev;
-	while (map)
-	{
-		free(map->line);
-		map = ft_delete_in_head(map);
-		map = map->next;
-	}
+	t_list	*tmp;
 
+	tmp = map;
+	while (tmp)
+	{
+		free(tmp->line);
+		tmp = tmp->next;
+	}
+	while (map)
+		map = ft_delete_in_head(map);
 }

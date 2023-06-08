@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 15:49:34 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/07 13:56:25 by walidnaiji       ###   ########.fr       */
+/*   Updated: 2023/06/08 14:57:43 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	ft_check_map_is_closed(t_list *map)
 	tmp = tmp->next;
 	while (tmp->next->next)
 	{
-		if ((tmp->line[0] != '1') || (tmp->line[ft_strlen(tmp->line) - 2] != '1'))
+		if ((tmp->line[0] != '1')
+			|| (tmp->line[ft_strlen(tmp->line) - 2] != '1'))
 			ft_error_closed();
 		tmp = tmp->next;
 	}
@@ -39,7 +40,6 @@ void	ft_check_map_is_closed(t_list *map)
 		i++;
 	}
 }
-
 
 void	ft_check_map_is_retangle(t_list *map)
 {

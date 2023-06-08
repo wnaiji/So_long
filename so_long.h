@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:38:50 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/07 23:16:30 by walidnaiji       ###   ########.fr       */
+/*   Updated: 2023/06/08 14:58:28 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-typedef struct  s_point
-  {
-    int           x;
-    int           y;
-  }               t_point;
+typedef struct s_point
+{
+	int	x;
+	int	y;
+
+}	t_point;
 
 //Verification du file descriteur:
 //pars_ber.c
@@ -56,7 +57,7 @@ char	*ft_last_content(t_list *list);
 //Outils de la Libft:
 //outils_libft.c
 void	ft_putstr(char *str);
-int 	ft_lstsize(t_list *lst);
+int		ft_lstsize(t_list *lst);
 //ft_strtrim.c
 char	*ft_strtrim(const char *s, const char *set);
 
@@ -68,15 +69,15 @@ void	ft_check_collectible(t_list *map);
 void	ft_check_map_is_retangle(t_list *map);
 void	ft_check_map_is_closed(t_list *map);
 //ft_analysis_map.c
-void	ft_check_map(int fd);
+t_list	*ft_check_map(int fd);
 int		ft_height_map(int fd);
 void	ft_analysis_map(t_list *map);
 void	ft_free_mapcpy(t_list *map);
 //ft_flood_fill.c
-t_point	ft_where_is_P(t_list **map, int *x, int *y);
+t_point	ft_where_is_perso(t_list **map, int *x, int *y);
 t_list	*ft_map_cpy(t_list *map);
 void	flood_fill(t_list *mapcpy);
-void	ft_fill_mapcpy_1(t_list *mapcpy, t_point size, t_point target, int x, int y);
+void	ft_fill_mapcpy_1(t_list *mapcpy, t_point target, int x, int y);
 void	ft_check_access(t_list *map);
 
 //Impression de la map:

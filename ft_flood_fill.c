@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_flood_fill.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:01:25 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/07 23:08:01 by walidnaiji       ###   ########.fr       */
+/*   Updated: 2023/06/08 14:51:27 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-t_point	ft_where_is_P(t_list **map, int *x, int *y)
+t_point	ft_where_is_perso(t_list **map, int *x, int *y)
 {
 	t_point	target;
 
@@ -23,11 +23,11 @@ t_point	ft_where_is_P(t_list **map, int *x, int *y)
 		while ((*map)->line[*x])
 		{
 			if ((*map)->line[*x] == 'P')
-				break;
+				break ;
 			(*x)++;
 		}
 		if ((*map)->line[*x] == 'P')
-				break;
+			break ;
 		(*y)++;
 		*map = (*map)->next;
 	}
@@ -36,43 +36,39 @@ t_point	ft_where_is_P(t_list **map, int *x, int *y)
 	return (target);
 }
 
-void	ft_fill_mapcpy_1(t_list *mapcpy, t_point size, t_point target, int x, int y)
+void	ft_fill_mapcpy_1(t_list *mapcpy, t_point target, int x, int y)
 {
 	if (mapcpy->line[x] == 'F')
 		return ;
 	if (mapcpy->line[x] != '1')
 		mapcpy->line[x] = 'F';
 	if (mapcpy->prev->line[x] != '1')
-		ft_fill_mapcpy_1(mapcpy = mapcpy->prev, size, target, x, y - 1);
+		ft_fill_mapcpy_1(mapcpy = mapcpy->prev, target, x, y - 1);
 	if (mapcpy->line[x + 1] != '1')
-		ft_fill_mapcpy_1(mapcpy, size, target, x + 1, y);
+		ft_fill_mapcpy_1(mapcpy, target, x + 1, y);
 	if (mapcpy->line[x - 1] != '1')
-		ft_fill_mapcpy_1(mapcpy, size, target, x - 1, y);
+		ft_fill_mapcpy_1(mapcpy, target, x - 1, y);
 	if (mapcpy->next->line[x] != '1')
-		ft_fill_mapcpy_1(mapcpy = mapcpy->next, size, target, x, y + 1);
+		ft_fill_mapcpy_1(mapcpy = mapcpy->next, target, x, y + 1);
 	if (mapcpy->line[x - 1] != '1')
-		ft_fill_mapcpy_1(mapcpy, size, target, x - 1, y);
+		ft_fill_mapcpy_1(mapcpy, target, x - 1, y);
 	if (mapcpy->line[x + 1] != '1')
-		ft_fill_mapcpy_1(mapcpy, size, target, x + 1, y);
+		ft_fill_mapcpy_1(mapcpy, target, x + 1, y);
 	if (mapcpy->next->line[x] != '1')
-		ft_fill_mapcpy_1(mapcpy = mapcpy->next, size, target, x, y + 1);
+		ft_fill_mapcpy_1(mapcpy = mapcpy->next, target, x, y + 1);
 	if (mapcpy->line[x + 1] != '1')
-		ft_fill_mapcpy_1(mapcpy, size, target, x + 1, y);
+		ft_fill_mapcpy_1(mapcpy, target, x + 1, y);
 	if (mapcpy->line[x - 1] != '1')
-		ft_fill_mapcpy_1(mapcpy, size, target, x - 1, y);
-
+		ft_fill_mapcpy_1(mapcpy, target, x - 1, y);
 }
 
 void	ft_check_access(t_list *map)
 {
 	t_list	*tmp;
 	int		i;
-	int		output;
-	int		collectible;
+	t_point	access;
 
 	tmp = map;
-	output = 0;
-	collectible = 0;
 	while (tmp->prev)
 		tmp = tmp->prev;
 	while (tmp->next)
@@ -81,16 +77,16 @@ void	ft_check_access(t_list *map)
 		while (tmp->line[i])
 		{
 			if (tmp->line[i] == 'E')
-				output++;
+				access.x = 1;
 			if (tmp->line[i] == 'C')
-				collectible++;
+				access.y = 1;
 			i++;
 		}
 		tmp = tmp->next;
 	}
-	if (output > 0)
+	if (access.x > 0)
 		ft_no_exit_access();
-	if (collectible > 0)
+	if (access.y > 0)
 		ft_no_access_collec();
 }
 
@@ -103,8 +99,8 @@ void	flood_fill(t_list *mapcpy)
 
 	size.y = ft_lstsize(mapcpy);
 	size.x = ft_strlen(mapcpy->line);
-	target = ft_where_is_P(&mapcpy, &x, &y);
-	ft_fill_mapcpy_1(mapcpy, size, target, x, y);
+	target = ft_where_is_perso(&mapcpy, &x, &y);
+	ft_fill_mapcpy_1(mapcpy, target, x, y);
 }
 
 t_list	*ft_map_cpy(t_list *map)
