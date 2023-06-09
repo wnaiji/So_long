@@ -6,7 +6,7 @@
 /*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 14:01:25 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/08 23:20:12 by walidnaiji       ###   ########.fr       */
+/*   Updated: 2023/06/09 14:26:31 by walidnaiji       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ void	ft_check_access(t_list *map)
 		}
 		tmp = tmp->next;
 	}
-	if (access.x = 1)
+	if (access.x == 1)
 		ft_no_exit_access();
-	if (access.y = 1)
+	if (access.y == 1)
 		ft_no_access_collec();
 }
 
