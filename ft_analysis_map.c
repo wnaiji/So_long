@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_analysis_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:35:37 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/09 14:25:51 by walidnaiji       ###   ########.fr       */
+/*   Updated: 2023/06/15 14:36:25 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ t_list	*ft_check_map(int fd)
 	mapcpy = ft_map_cpy(map);
 	flood_fill(mapcpy);
 	ft_check_access(mapcpy);
-	print_map(mapcpy);
 	ft_free_mapcpy(mapcpy);
 	return (map);
 }

@@ -6,7 +6,7 @@
 #    By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 17:46:04 by wnaiji            #+#    #+#              #
-#    Updated: 2023/06/08 13:30:53 by wnaiji           ###   ########.fr        #
+#    Updated: 2023/06/15 16:55:44 by wnaiji           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,19 +21,20 @@ SRC = exit_error.c \
 	outils_libft.c \
 	pars_ber.c \
 	ft_flood_fill.c \
+	ft_init_mlx.c \
 	main.c \
 
 OBJS = $(SRC:.c=.o)
 
 NAME = so_long
 
-CFLAGS = -Werror -Wextra -Wall #-fsanitize=address -g3
+CFLAGS = -Werror -Wextra -Wall -Imlx -fsanitize=address -g3
 
 .c.o: $(SRC)
 	gcc $(CFLAGS) -I . -c $< -o $(<:.c=.o)
 
 $(NAME): $(OBJS)
-	gcc $(CFLAGS) $(OBJS) -o $(NAME)
+	gcc $(CFLAGS) $(OBJS) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 all: $(NAME)
 

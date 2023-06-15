@@ -6,7 +6,7 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:38:16 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/08 14:40:58 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/15 16:14:27 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 		name_fd = ft_check_ber(argv[1]);
 		ft_check_fd(&fd, name_fd);
 		map = ft_check_map(fd);
-		print_map(map);
+		ft_init_window(map);
 		system("leaks so_long");
 	}
 	else

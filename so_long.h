@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:38:50 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/09 14:26:10 by walidnaiji       ###   ########.fr       */
+/*   Updated: 2023/06/15 20:02:55 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "get_next_line.h"
-//# include <mlx.h>
+# include <mlx.h>
 
 typedef struct s_list
 {
@@ -32,6 +32,19 @@ typedef struct s_point
 	int	y;
 
 }	t_point;
+
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
+typedef struct	s_vars {
+	void	*mlx;
+	void	*win;
+}				t_vars;
 
 //Verification du file descriteur:
 //pars_ber.c
@@ -80,6 +93,10 @@ t_list	*ft_map_cpy(t_list *map);
 void	flood_fill(t_list *mapcpy);
 void	ft_fill_mapcpy_1(t_list *mapcpy, t_point target, int x, int y);
 void	ft_check_access(t_list *map);
+
+//Gestion de la mlx et ouverture de window:
+//ft_init_mlx.c
+void	ft_init_window(t_list *map);
 
 //Impression de la map:
 void	print_map(t_list *map);
