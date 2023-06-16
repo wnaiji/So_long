@@ -6,7 +6,7 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 15:32:20 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/16 17:40:18 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/16 19:41:02 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ void	ft_move_w(t_all *all)
 
 	tmp = (*all).map;
 	if (tmp->prev->line[(*all).pers.x] == '1')
+	{
+		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.floor, (*all).pers.x * 64, (*all).pers.y * 64);
 		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_w_a, (*all).pers.x * 64, (*all).pers.y * 64);
+	}
 	else if (tmp->prev->line[(*all).pers.x] == 'E' && ft_check_collect((*all).map))
 	{
 		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_w_a, (*all).pers.x * 64, ((*all).pers.y - 1) * 64);
@@ -54,7 +57,7 @@ void	ft_move_w(t_all *all)
 		tmp->prev->line[(*all).pers.x] = '0';
 		(*all).pers.y--;
 	}
-	else if (tmp->prev->line[(*all).pers.x] == '0')
+	else if (tmp->prev->line[(*all).pers.x] == '0' || tmp->prev->line[(*all).pers.x] == 'P')
 	{
 		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.floor, (*all).pers.x * 64, (*all).pers.y * 64);
 		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_w_a, (*all).pers.x * 64, ((*all).pers.y - 1) * 64);
@@ -68,7 +71,10 @@ void	ft_move_s(t_all *all)
 
 	tmp = (*all).map;
 	if (tmp->next->line[(*all).pers.x] == '1')
+	{
+		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.floor, (*all).pers.x * 64, (*all).pers.y * 64);
 		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_s_a, (*all).pers.x * 64, (*all).pers.y * 64);
+	}
 	else if (tmp->next->line[(*all).pers.x] == 'E' && ft_check_collect((*all).map))
 	{
 		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_s_a, (*all).pers.x * 64, ((*all).pers.y + 1) * 64);
@@ -81,7 +87,7 @@ void	ft_move_s(t_all *all)
 		tmp->next->line[(*all).pers.x] = '0';
 		(*all).pers.y++;
 	}
-	else if (tmp->next->line[(*all).pers.x] == '0')
+	else if (tmp->next->line[(*all).pers.x] == '0' || tmp->prev->line[(*all).pers.x] == 'P')
 	{
 		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.floor, (*all).pers.x * 64, (*all).pers.y * 64);
 		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_s_a, (*all).pers.x * 64, ((*all).pers.y + 1) * 64);
@@ -95,7 +101,10 @@ void	ft_move_a(t_all *all)
 
 	tmp = (*all).map;
 	if (tmp->line[(*all).pers.x - 1] == '1')
+	{
+		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.floor, (*all).pers.x * 64, (*all).pers.y * 64);
 		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_a, (*all).pers.x * 64, (*all).pers.y * 64);
+	}
 	else if (tmp->line[(*all).pers.x - 1] == 'E' && ft_check_collect((*all).map))
 	{
 		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_a, ((*all).pers.x - 1) * 64, (*all).pers.y * 64);
@@ -104,14 +113,14 @@ void	ft_move_a(t_all *all)
 	else if (tmp->line[(*all).pers.x - 1] == 'C')
 	{
 		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.floor, ((*all).pers.x - 1) * 64, (*all).pers.y * 64);
-		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_s_a, ((*all).pers.x - 1) * 64, (*all).pers.y * 64);
+		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_a, ((*all).pers.x - 1) * 64, (*all).pers.y * 64);
 		tmp->line[(*all).pers.x] = '0';
 		(*all).pers.x--;
 	}
-	else if (tmp->line[(*all).pers.x - 1] == '0')
+	else if (tmp->line[(*all).pers.x - 1] == '0' || tmp->prev->line[(*all).pers.x] == 'P')
 	{
 		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.floor, (*all).pers.x * 64, (*all).pers.y * 64);
-		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_s_a, ((*all).pers.x - 1) * 64, (*all).pers.y * 64);
+		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_a, ((*all).pers.x - 1) * 64, (*all).pers.y * 64);
 		(*all).pers.x--;
 	}
 }
@@ -122,7 +131,10 @@ void	ft_move_d(t_all *all)
 
 	tmp = (*all).map;
 	if (tmp->line[(*all).pers.x + 1] == '1')
+	{
+		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.floor, (*all).pers.x * 64, (*all).pers.y * 64);
 		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_d, (*all).pers.x * 64, (*all).pers.y * 64);
+	}
 	else if (tmp->line[(*all).pers.x + 1] == 'E' && ft_check_collect((*all).map))
 	{
 		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_d, ((*all).pers.x + 1) * 64, (*all).pers.y * 64);
@@ -131,14 +143,14 @@ void	ft_move_d(t_all *all)
 	else if (tmp->line[(*all).pers.x + 1] == 'C')
 	{
 		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.floor, ((*all).pers.x + 1) * 64, (*all).pers.y * 64);
-		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_s_a, ((*all).pers.x + 1) * 64, (*all).pers.y * 64);
+		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_d, ((*all).pers.x + 1) * 64, (*all).pers.y * 64);
 		tmp->line[(*all).pers.x] = '0';
 		(*all).pers.x++;
 	}
-	else if (tmp->line[(*all).pers.x + 1] == '0')
+	else if (tmp->line[(*all).pers.x + 1] == '0' || tmp->prev->line[(*all).pers.x] == 'P')
 	{
 		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.floor, (*all).pers.x * 64, (*all).pers.y * 64);
-		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_s_a, ((*all).pers.x + 1) * 64, (*all).pers.y * 64);
+		mlx_put_image_to_window((*all).vars.mlx, (*all).vars.win, (*all).img.perso_d, ((*all).pers.x + 1) * 64, (*all).pers.y * 64);
 		(*all).pers.x++;
 	}
 }

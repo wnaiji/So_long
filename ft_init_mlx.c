@@ -6,7 +6,7 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:37:32 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/16 17:33:03 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/16 18:45:11 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_data	ft_init_img(t_data *img, void **mlx)
 	img->floor = mlx_xpm_file_to_image(*mlx, "xpm/floor.xpm", &i, &i);
 	img->wall = mlx_xpm_file_to_image(*mlx, "xpm/wall.xpm", &i, &i);
 	img->perso_d = mlx_xpm_file_to_image(*mlx, "xpm/perso.xpm", &i, &i);
-	img->perso_a = mlx_xpm_file_to_image(*mlx, "xpm/perso.xpm", &i, &i);
+	img->perso_a = mlx_xpm_file_to_image(*mlx, "xpm/perso-gauche.xpm", &i, &i);
 	img->perso_s_d = mlx_xpm_file_to_image(*mlx, "xpm/perso bas.xpm", &i, &i);
 	img->perso_s_a = mlx_xpm_file_to_image(*mlx, "xpm/perso-gauche bas.xpm", &i, &i);
 	img->perso_w_d = mlx_xpm_file_to_image(*mlx, "xpm/perso haut.xpm", &i, &i);
