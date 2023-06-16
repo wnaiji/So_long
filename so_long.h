@@ -6,7 +6,7 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:38:50 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/15 20:02:55 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/16 17:24:36 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,30 @@ typedef struct s_point
 }	t_point;
 
 typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	void	*floor;
+	void	*wall;
+	void	*perso_d;
+	void	*perso_a;
+	void	*perso_s_d;
+	void	*perso_s_a;
+	void	*perso_w_d;
+	void	*perso_w_a;
+	void	*exit;
+	void	*collectible;
 }				t_data;
 
 typedef struct	s_vars {
 	void	*mlx;
 	void	*win;
 }				t_vars;
+
+typedef struct	s_all {
+	t_vars	vars;
+	t_data	img;
+	t_point	pers;
+	t_list	*map;
+	int		step;
+}				t_all;
 
 //Verification du file descriteur:
 //pars_ber.c
@@ -97,6 +110,15 @@ void	ft_check_access(t_list *map);
 //Gestion de la mlx et ouverture de window:
 //ft_init_mlx.c
 void	ft_init_window(t_list *map);
+int		ft_key(int key_code, t_all *all);
+void	ft_put_img(t_vars vars, t_data img, t_list *map);
+t_data	ft_init_img(t_data *img, void **mlx);
+//ft_move.c
+void	ft_move_w(t_all all);
+void	ft_move_s(t_all all);
+void	ft_move_a(t_all all);
+void	ft_move_d(t_all all);
+int	ft_check_collect(t_list *map);
 
 //Impression de la map:
 void	print_map(t_list *map);

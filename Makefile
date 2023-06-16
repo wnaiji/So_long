@@ -6,7 +6,7 @@
 #    By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 17:46:04 by wnaiji            #+#    #+#              #
-#    Updated: 2023/06/15 16:55:44 by wnaiji           ###   ########.fr        #
+#    Updated: 2023/06/16 15:48:04 by wnaiji           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC = exit_error.c \
 	pars_ber.c \
 	ft_flood_fill.c \
 	ft_init_mlx.c \
+	ft_move.c \
 	main.c \
 
 OBJS = $(SRC:.c=.o)
