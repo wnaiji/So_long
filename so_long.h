@@ -6,7 +6,7 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:38:50 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/16 17:24:36 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/16 17:32:25 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,10 +114,10 @@ int		ft_key(int key_code, t_all *all);
 void	ft_put_img(t_vars vars, t_data img, t_list *map);
 t_data	ft_init_img(t_data *img, void **mlx);
 //ft_move.c
-void	ft_move_w(t_all all);
-void	ft_move_s(t_all all);
-void	ft_move_a(t_all all);
-void	ft_move_d(t_all all);
+void	ft_move_w(t_all *all);
+void	ft_move_s(t_all *all);
+void	ft_move_a(t_all *all);
+void	ft_move_d(t_all *all);
 int	ft_check_collect(t_list *map);
 
 //Impression de la map:

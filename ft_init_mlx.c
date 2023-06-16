@@ -6,7 +6,7 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:37:32 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/16 17:24:20 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/16 17:33:03 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ int	ft_key(int key_code, t_all *all)
 	if (key_code == 53)
 		exit(EXIT_SUCCESS);
 	if (key_code == 13)
-		ft_move_w(*all);
+		ft_move_w(*(&all));
 	if (key_code == 1)
-		ft_move_s(*all);
+		ft_move_s(*(&all));
 	if (key_code == 0)
-		ft_move_a(*all);
+		ft_move_a(*(&all));
 	if (key_code == 2)
-		ft_move_d(*all);
+		ft_move_d(*(&all));
 	return (0);
 }
 
