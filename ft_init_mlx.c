@@ -6,7 +6,7 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:37:32 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/16 18:45:11 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/17 18:05:56 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_data	ft_init_img(t_data *img, void **mlx)
 {
 	int		i;
 
-	i = 64;
+	i = BUF;
 	img->floor = mlx_xpm_file_to_image(*mlx, "xpm/floor.xpm", &i, &i);
 	img->wall = mlx_xpm_file_to_image(*mlx, "xpm/wall.xpm", &i, &i);
 	img->perso_d = mlx_xpm_file_to_image(*mlx, "xpm/perso.xpm", &i, &i);
@@ -43,15 +43,15 @@ void	ft_put_img(t_vars vars, t_data img, t_list *map)
 		while (tmp->line[pt.x])
 		{
 			if (tmp->line[pt.x] != '1')
-				mlx_put_image_to_window(vars.mlx, vars.win, img.floor, pt.x * 64, pt.y * 64);
+				mlx_put_image_to_window(vars.mlx, vars.win, img.floor, pt.x * BUF, pt.y * BUF);
 			if (tmp->line[pt.x] == '1')
-				mlx_put_image_to_window(vars.mlx, vars.win, img.wall, pt.x * 64, pt.y * 64);
+				mlx_put_image_to_window(vars.mlx, vars.win, img.wall, pt.x * BUF, pt.y * BUF);
 			if (tmp->line[pt.x] == 'C')
-				mlx_put_image_to_window(vars.mlx, vars.win, img.collectible, pt.x * 64, pt.y * 64);
+				mlx_put_image_to_window(vars.mlx, vars.win, img.collectible, pt.x * BUF, pt.y * BUF);
 			if (tmp->line[pt.x] == 'E')
-				mlx_put_image_to_window(vars.mlx, vars.win, img.exit, pt.x * 64, pt.y * 64);
+				mlx_put_image_to_window(vars.mlx, vars.win, img.exit, pt.x * BUF, pt.y * BUF);
 			if (tmp->line[pt.x] == 'P')
-				mlx_put_image_to_window(vars.mlx, vars.win, img.perso_d, pt.x * 64, pt.y * 64);
+				mlx_put_image_to_window(vars.mlx, vars.win, img.perso_d, pt.x * BUF, pt.y * BUF);
 			pt.x++;
 		}
 		pt.y++;
@@ -62,7 +62,12 @@ void	ft_put_img(t_vars vars, t_data img, t_list *map)
 int	ft_key(int key_code, t_all *all)
 {
 	if (key_code == 53)
+	{
+		print_map((*all).map);
+		//mlx_destroy_window((*all).vars.mlx, (*all).vars.win);
+		system("leaks so_long");
 		exit(EXIT_SUCCESS);
+	}
 	if (key_code == 13)
 		ft_move_w(*(&all));
 	if (key_code == 1)
@@ -74,6 +79,14 @@ int	ft_key(int key_code, t_all *all)
 	return (0);
 }
 
+int	ft_close_win(int key_code, void *param)
+{
+	(void)key_code;
+	(void)param;
+	exit(0);
+	return (0);
+}
+
 void	ft_init_window(t_list *map)
 {
 	t_all	all;
@@ -82,7 +95,7 @@ void	ft_init_window(t_list *map)
 	t_point	pers;
 
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, ft_strlen(map->line) * 64 -64, ft_lstsize(map) * 64 - 64, "|-*Sonic*-|");
+	vars.win = mlx_new_window(vars.mlx, ft_strlen(map->line) * BUF -BUF, ft_lstsize(map) * BUF - BUF, "|-*Sonic*-|");
 	ft_init_img(&img, &vars.mlx);
 	ft_put_img(vars, img, map);
 	ft_where_is_perso(&map, &pers.x, &pers.y);
@@ -91,7 +104,8 @@ void	ft_init_window(t_list *map)
 	all.pers = pers;
 	all.map = map;
 	all.step = 0;
-	//mlx_loop_hook(vars.mlx, ft_handle_loop, NULL);
+	//mlx_do_key_autorepeatoff(all.vars.mlx);
 	mlx_hook(vars.win, 2, 0, &ft_key, &all);
+	mlx_hook(vars.win, 17, 0, &ft_close_win, NULL);
 	mlx_loop(vars.mlx);
 }

@@ -6,11 +6,12 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 13:14:10 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/05/31 15:08:02 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/05/31 14:23:19 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
 static char	*ft_rest_line(char *rest, char *tmp)
 {

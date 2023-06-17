@@ -6,7 +6,7 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:38:50 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/16 17:32:25 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/17 16:48:58 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <stdio.h>
 # include "get_next_line.h"
 # include <mlx.h>
+
+# ifndef BUF
+#  define BUF 64
+# endif
 
 typedef struct s_list
 {
@@ -83,10 +87,14 @@ char	*ft_last_content(t_list *list);
 
 //Outils de la Libft:
 //outils_libft.c
+void	ft_putchar(char c);
 void	ft_putstr(char *str);
 int		ft_lstsize(t_list *lst);
+void	ft_putnbr(int n);
 //ft_strtrim.c
 char	*ft_strtrim(const char *s, const char *set);
+//ft_itoa.c
+char	*ft_itoa(int n);
 
 //Verification de la Map:
 //ft_check_map.c
@@ -118,7 +126,7 @@ void	ft_move_w(t_all *all);
 void	ft_move_s(t_all *all);
 void	ft_move_a(t_all *all);
 void	ft_move_d(t_all *all);
-int	ft_check_collect(t_list *map);
+int		ft_check_collect(t_list *map);
 
 //Impression de la map:
 void	print_map(t_list *map);
