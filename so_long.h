@@ -6,7 +6,7 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:38:50 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/17 16:48:58 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/17 19:30:22 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@
 # include "get_next_line.h"
 # include <mlx.h>
 
-# ifndef BUF
-#  define BUF 64
+# ifndef B
+#  define B 64
 # endif
 
 typedef struct s_list
@@ -37,25 +37,23 @@ typedef struct s_point
 
 }	t_point;
 
-typedef struct	s_data {
-	void	*floor;
+typedef struct s_data {
+	void	*flr;
 	void	*wall;
-	void	*perso_d;
-	void	*perso_a;
-	void	*perso_s_d;
-	void	*perso_s_a;
-	void	*perso_w_d;
-	void	*perso_w_a;
+	void	*perd;
+	void	*per_a;
+	void	*per_s;
+	void	*per_w;
 	void	*exit;
-	void	*collectible;
+	void	*col;
 }				t_data;
 
-typedef struct	s_vars {
+typedef struct s_vars {
 	void	*mlx;
 	void	*win;
 }				t_vars;
 
-typedef struct	s_all {
+typedef struct s_all {
 	t_vars	vars;
 	t_data	img;
 	t_point	pers;
@@ -119,8 +117,9 @@ void	ft_check_access(t_list *map);
 //ft_init_mlx.c
 void	ft_init_window(t_list *map);
 int		ft_key(int key_code, t_all *all);
-void	ft_put_img(t_vars vars, t_data img, t_list *map);
+void	ft_put_img(void *mlx, void *win, t_data img, t_list *map);
 t_data	ft_init_img(t_data *img, void **mlx);
+int		ft_close_win(int key_code, void *param);
 //ft_move.c
 void	ft_move_w(t_all *all);
 void	ft_move_s(t_all *all);

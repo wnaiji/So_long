@@ -6,7 +6,7 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:37:32 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/17 18:05:56 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/17 19:29:13 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,19 @@ t_data	ft_init_img(t_data *img, void **mlx)
 {
 	int		i;
 
-	i = BUF;
-	img->floor = mlx_xpm_file_to_image(*mlx, "xpm/floor.xpm", &i, &i);
+	i = B;
+	img->flr = mlx_xpm_file_to_image(*mlx, "xpm/floor.xpm", &i, &i);
 	img->wall = mlx_xpm_file_to_image(*mlx, "xpm/wall.xpm", &i, &i);
-	img->perso_d = mlx_xpm_file_to_image(*mlx, "xpm/perso.xpm", &i, &i);
-	img->perso_a = mlx_xpm_file_to_image(*mlx, "xpm/perso-gauche.xpm", &i, &i);
-	img->perso_s_d = mlx_xpm_file_to_image(*mlx, "xpm/perso bas.xpm", &i, &i);
-	img->perso_s_a = mlx_xpm_file_to_image(*mlx, "xpm/perso-gauche bas.xpm", &i, &i);
-	img->perso_w_d = mlx_xpm_file_to_image(*mlx, "xpm/perso haut.xpm", &i, &i);
-	img->perso_w_a = mlx_xpm_file_to_image(*mlx, "xpm/perso-gauche haut.xpm", &i, &i);
+	img->perd = mlx_xpm_file_to_image(*mlx, "xpm/pers.xpm", &i, &i);
+	img->per_a = mlx_xpm_file_to_image(*mlx, "xpm/pers-g.xpm", &i, &i);
+	img->per_s = mlx_xpm_file_to_image(*mlx, "xpm/pers-b.xpm", &i, &i);
+	img->per_w = mlx_xpm_file_to_image(*mlx, "xpm/pers-h.xpm", &i, &i);
 	img->exit = mlx_xpm_file_to_image(*mlx, "xpm/exit.xpm", &i, &i);
-	img->collectible = mlx_xpm_file_to_image(*mlx, "xpm/collectible.xpm", &i, &i);
+	img->col = mlx_xpm_file_to_image(*mlx, "xpm/collec.xpm", &i, &i);
 	return (*img);
 }
 
-void	ft_put_img(t_vars vars, t_data img, t_list *map)
+void	ft_put_img(void *mlx, void *win, t_data img, t_list *map)
 {
 	t_list	*tmp;
 	t_point	pt;
@@ -43,15 +41,15 @@ void	ft_put_img(t_vars vars, t_data img, t_list *map)
 		while (tmp->line[pt.x])
 		{
 			if (tmp->line[pt.x] != '1')
-				mlx_put_image_to_window(vars.mlx, vars.win, img.floor, pt.x * BUF, pt.y * BUF);
+				mlx_put_image_to_window(mlx, win, img.flr, pt.x * B, pt.y * B);
 			if (tmp->line[pt.x] == '1')
-				mlx_put_image_to_window(vars.mlx, vars.win, img.wall, pt.x * BUF, pt.y * BUF);
+				mlx_put_image_to_window(mlx, win, img.wall, pt.x * B, pt.y * B);
 			if (tmp->line[pt.x] == 'C')
-				mlx_put_image_to_window(vars.mlx, vars.win, img.collectible, pt.x * BUF, pt.y * BUF);
+				mlx_put_image_to_window(mlx, win, img.col, pt.x * B, pt.y * B);
 			if (tmp->line[pt.x] == 'E')
-				mlx_put_image_to_window(vars.mlx, vars.win, img.exit, pt.x * BUF, pt.y * BUF);
+				mlx_put_image_to_window(mlx, win, img.exit, pt.x * B, pt.y * B);
 			if (tmp->line[pt.x] == 'P')
-				mlx_put_image_to_window(vars.mlx, vars.win, img.perso_d, pt.x * BUF, pt.y * BUF);
+				mlx_put_image_to_window(mlx, win, img.perd, pt.x * B, pt.y * B);
 			pt.x++;
 		}
 		pt.y++;
@@ -62,12 +60,7 @@ void	ft_put_img(t_vars vars, t_data img, t_list *map)
 int	ft_key(int key_code, t_all *all)
 {
 	if (key_code == 53)
-	{
-		print_map((*all).map);
-		//mlx_destroy_window((*all).vars.mlx, (*all).vars.win);
-		system("leaks so_long");
 		exit(EXIT_SUCCESS);
-	}
 	if (key_code == 13)
 		ft_move_w(*(&all));
 	if (key_code == 1)
@@ -95,16 +88,16 @@ void	ft_init_window(t_list *map)
 	t_point	pers;
 
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, ft_strlen(map->line) * BUF -BUF, ft_lstsize(map) * BUF - BUF, "|-*Sonic*-|");
+	vars.win = mlx_new_window(vars.mlx, ft_strlen(map->line) * B - B,
+			ft_lstsize(map) * B - B, "|-*Sonic*-|");
 	ft_init_img(&img, &vars.mlx);
-	ft_put_img(vars, img, map);
+	ft_put_img(vars.mlx, vars.win, img, map);
 	ft_where_is_perso(&map, &pers.x, &pers.y);
 	all.vars = vars;
 	all.img = img;
 	all.pers = pers;
 	all.map = map;
 	all.step = 0;
-	//mlx_do_key_autorepeatoff(all.vars.mlx);
 	mlx_hook(vars.win, 2, 0, &ft_key, &all);
 	mlx_hook(vars.win, 17, 0, &ft_close_win, NULL);
 	mlx_loop(vars.mlx);
