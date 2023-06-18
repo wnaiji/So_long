@@ -6,7 +6,7 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:38:50 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/17 19:30:22 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/18 12:18:06 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <mlx.h>
 
 # ifndef B
-#  define B 64
+#  define B 32
 # endif
 
 typedef struct s_list
@@ -126,6 +126,18 @@ void	ft_move_s(t_all *all);
 void	ft_move_a(t_all *all);
 void	ft_move_d(t_all *all);
 int		ft_check_collect(t_list *map);
+//ft_move_e_and_c.c
+void	ft_move_to_e_by_w_or_d(t_all *all, char c);
+void	ft_move_to_e_by_s_or_a(t_all *all, char c);
+void	ft_move_to_c_by_w(t_all *all, char c);
+void	ft_move_to_c_by_d(t_all *all, char c);
+void	ft_move_to_c_by_s(t_all *all, char c);
+//ft_move_o.c
+void	ft_move_to_c_by_a(t_all *all, char c);
+void	ft_move_to_0_by_w(t_all *all, char c);
+void	ft_move_to_0_by_a(t_all *all, char c);
+void	ft_move_to_0_by_d(t_all *all, char c);
+void	ft_move_to_0_by_s(t_all *all, char c);
 
 //Impression de la map:
 void	print_map(t_list *map);
