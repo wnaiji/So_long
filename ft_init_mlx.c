@@ -6,7 +6,7 @@
 /*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:37:32 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/18 10:41:05 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/18 12:45:05 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_data	ft_init_img(t_data *img, void **mlx)
 {
-	int		i;
+	int	i;
 
 	i = B;
 	if (B == 32)
@@ -27,18 +27,16 @@ t_data	ft_init_img(t_data *img, void **mlx)
 		img->per_w = mlx_xpm_file_to_image(*mlx, "xpm32/persW32.xpm", &i, &i);
 		img->exit = mlx_xpm_file_to_image(*mlx, "xpm32/exit32.xpm", &i, &i);
 		img->col = mlx_xpm_file_to_image(*mlx, "xpm32/col32.xpm", &i, &i);
+		return (*img);
 	}
-	else
-	{
-		img->flr = mlx_xpm_file_to_image(*mlx, "xpm64/flr64.xpm", &i, &i);
-		img->wall = mlx_xpm_file_to_image(*mlx, "xpm64/wall64.xpm", &i, &i);
-		img->perd = mlx_xpm_file_to_image(*mlx, "xpm64/persD64.xpm", &i, &i);
-		img->per_a = mlx_xpm_file_to_image(*mlx, "xpm64/persA64.xpm", &i, &i);
-		img->per_s = mlx_xpm_file_to_image(*mlx, "xpm64/persS64.xpm", &i, &i);
-		img->per_w = mlx_xpm_file_to_image(*mlx, "xpm64/persW64.xpm", &i, &i);
-		img->exit = mlx_xpm_file_to_image(*mlx, "xpm64/exit64.xpm", &i, &i);
-		img->col = mlx_xpm_file_to_image(*mlx, "xpm64/col64.xpm", &i, &i);
-	}
+	img->flr = mlx_xpm_file_to_image(*mlx, "xpm64/flr64.xpm", &i, &i);
+	img->wall = mlx_xpm_file_to_image(*mlx, "xpm64/wall64.xpm", &i, &i);
+	img->perd = mlx_xpm_file_to_image(*mlx, "xpm64/persD64.xpm", &i, &i);
+	img->per_a = mlx_xpm_file_to_image(*mlx, "xpm64/persA64.xpm", &i, &i);
+	img->per_s = mlx_xpm_file_to_image(*mlx, "xpm64/persS64.xpm", &i, &i);
+	img->per_w = mlx_xpm_file_to_image(*mlx, "xpm64/persW64.xpm", &i, &i);
+	img->exit = mlx_xpm_file_to_image(*mlx, "xpm64/exit64.xpm", &i, &i);
+	img->col = mlx_xpm_file_to_image(*mlx, "xpm64/col64.xpm", &i, &i);
 	return (*img);
 }
 

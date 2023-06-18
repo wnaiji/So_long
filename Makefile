@@ -6,7 +6,7 @@
 #    By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 17:46:04 by wnaiji            #+#    #+#              #
-#    Updated: 2023/06/17 17:37:42 by wnaiji           ###   ########.fr        #
+#    Updated: 2023/06/18 12:47:10 by wnaiji           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,13 +24,15 @@ SRC = exit_error.c \
 	get_next_line.c \
 	get_next_line_utils.c \
 	ft_itoa.c \
+	ft_move_0.c \
+	ft_move_e_and_c.c \
 	main.c \
 
 OBJS = $(SRC:.c=.o)
 
 NAME = so_long
 
-CFLAGS = -Werror -Wextra -Wall -Imlx #-fsanitize=address -g3
+CFLAGS = -Werror -Wextra -Wall -Imlx -fsanitize=address -g3
 
 .c.o: $(SRC)
 	gcc $(CFLAGS) -I . -c $< -o $(<:.c=.o)
