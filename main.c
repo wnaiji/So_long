@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:38:16 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/17 16:24:19 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/18 08:47:30 by walidnaiji       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ int	main(int argc, char **argv)
 		name_fd = ft_check_ber(argv[1]);
 		ft_check_fd(&fd, name_fd);
 		map = ft_check_map(fd);
+		if (B != 32 && B != 64)
+		{
+			ft_putstr("Error: BUFFER is not correct\n")
+			exit(EXIT_FAILURE);
+		}
 		ft_init_window(map);
 		system("leaks so_long");
 	}
