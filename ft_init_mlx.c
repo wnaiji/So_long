@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_mlx.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 14:37:32 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/18 12:45:05 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/18 19:42:59 by walidnaiji       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,11 @@ void	ft_put_img(void *mlx, void *win, t_data img, t_list *map)
 				mlx_put_image_to_window(mlx, win, img.flr, pt.x * B, pt.y * B);
 			if (tmp->line[pt.x] == '1')
 				mlx_put_image_to_window(mlx, win, img.wall, pt.x * B, pt.y * B);
-			if (tmp->line[pt.x] == 'C')
+			else if (tmp->line[pt.x] == 'C')
 				mlx_put_image_to_window(mlx, win, img.col, pt.x * B, pt.y * B);
-			if (tmp->line[pt.x] == 'E')
+			else if (tmp->line[pt.x] == 'E')
 				mlx_put_image_to_window(mlx, win, img.exit, pt.x * B, pt.y * B);
-			if (tmp->line[pt.x] == 'P')
+			else if (tmp->line[pt.x] == 'P')
 				mlx_put_image_to_window(mlx, win, img.perd, pt.x * B, pt.y * B);
 			pt.x++;
 		}
@@ -73,13 +73,13 @@ int	ft_key(int key_code, t_all *all)
 {
 	if (key_code == 53)
 		exit(EXIT_SUCCESS);
-	if (key_code == 13)
+	else if (key_code == 13)
 		ft_move_w(*(&all));
-	if (key_code == 1)
+	else if (key_code == 1)
 		ft_move_s(*(&all));
-	if (key_code == 0)
+	else if (key_code == 0)
 		ft_move_a(*(&all));
-	if (key_code == 2)
+	else if (key_code == 2)
 		ft_move_d(*(&all));
 	return (0);
 }

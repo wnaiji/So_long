@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+         #
+#    By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/28 17:46:04 by wnaiji            #+#    #+#              #
-#    Updated: 2023/06/18 12:47:10 by wnaiji           ###   ########.fr        #
+#    Updated: 2023/06/18 19:53:21 by walidnaiji       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,7 @@ OBJS = $(SRC:.c=.o)
 
 NAME = so_long
 
-CFLAGS = -Werror -Wextra -Wall -Imlx -fsanitize=address -g3
+CFLAGS = -Werror -Wextra -Wall -Imlx #-fsanitize=address -g3
 
 .c.o: $(SRC)
 	gcc $(CFLAGS) -I . -c $< -o $(<:.c=.o)

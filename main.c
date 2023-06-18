@@ -6,25 +6,11 @@
 /*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:38:16 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/18 10:26:24 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/18 19:46:10 by walidnaiji       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	print_map(t_list *map)
-{
-	t_list	*tmp;
-
-	tmp = map;
-	while (tmp->prev)
-		tmp = tmp->prev;
-	while (tmp)
-	{
-		printf("%s", tmp->line);
-		tmp = tmp->next;
-	}
-}
 
 int	main(int argc, char **argv)
 {
@@ -41,6 +27,7 @@ int	main(int argc, char **argv)
 		if (B != 32 && B != 64)
 		{
 			ft_putstr("Error: BUFFER is not correct\n");
+			system("leaks so_long");
 			exit(EXIT_FAILURE);
 		}
 		ft_init_window(map);

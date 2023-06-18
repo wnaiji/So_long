@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pars_ber.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:42:33 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/05 17:15:13 by wnaiji           ###   ########.fr       */
+/*   Updated: 2023/06/18 19:47:47 by walidnaiji       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	ft_fd_is_ber(const char *str)
 		i++;
 	}
 	ft_putstr("Error file descriptor\n");
+	system("leaks so_long");
 	exit(EXIT_FAILURE);
 }
 
@@ -40,6 +41,7 @@ char	*ft_check_ber(char *str)
 		if (strtrim[i] == ' ')
 		{
 			ft_putstr("Error: file descriptor\n");
+			system("leaks so_long");
 			exit(EXIT_FAILURE);
 		}
 		i++;
