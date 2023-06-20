@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 15:49:34 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/18 19:51:25 by walidnaiji       ###   ########.fr       */
+/*   Updated: 2023/06/20 12:30:12 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,11 @@ void	ft_check_map_is_closed(t_list *map)
 	int		i;
 
 	tmp = map;
-	i = 0;
-	while (tmp->line[i] != '\n')
+	i = -1;
+	while (tmp->line[++i] != '\n')
 	{
 		if (tmp->line[i] != '1')
 			ft_error_closed();
-		i++;
 	}
 	tmp = tmp->next;
 	while (tmp->next->next)
@@ -86,7 +85,6 @@ void	ft_check_person(t_list *map)
 	if (person != 1)
 	{
 		ft_putstr("Error: The number of player is different from 1\n");
-		system("leaks so_long");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -114,7 +112,6 @@ void	ft_check_exit(t_list *map)
 	if (output != 1)
 	{
 		ft_putstr("Error: The output number is different from 1\n");
-		system("leaks so_long");
 		exit(EXIT_FAILURE);
 	}
 }
@@ -142,7 +139,6 @@ void	ft_check_collectible(t_list *map)
 	if (collectible < 1)
 	{
 		ft_putstr("Error: There are no collectibles\n");
-		system("leaks so_long");
 		exit(EXIT_FAILURE);
 	}
 }

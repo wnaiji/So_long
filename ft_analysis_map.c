@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_analysis_map.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 18:35:37 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/18 20:10:01 by walidnaiji       ###   ########.fr       */
+/*   Updated: 2023/06/20 12:25:59 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ void	ft_check_other_charcarter(t_list *map)
 	tmp = map;
 	while (tmp->next)
 	{
+		i = 0;
 		while (tmp->line[i])
 		{
-			if ((tmp->line[i] != '0') || (tmp->line[i] != '1')
-				|| (tmp->line[i] != 'E') || (tmp->line[i] != 'P')
-				|| (tmp->line[i] != 'C'))
+			if ((tmp->line[i] != '0') && (tmp->line[i] != '1')
+				&& (tmp->line[i] != 'E') && (tmp->line[i] != 'P')
+				&& (tmp->line[i] != 'C') && tmp->line[i] != '\n')
 			{
 				ft_putstr("Error: One or more characters are not correct\n");
-				system("leaks so_long");
 				exit(EXIT_FAILURE);
 			}
 			i++;
@@ -54,6 +54,7 @@ void	ft_analysis_map(t_list *map)
 	ft_check_collectible(map);
 	ft_check_map_is_retangle(map);
 	ft_check_map_is_closed(map);
+	ft_check_other_charcarter(map);
 }
 
 t_list	*ft_check_map(int fd)

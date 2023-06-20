@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: walidnaiji <walidnaiji@student.42.fr>      +#+  +:+       +#+        */
+/*   By: wnaiji <wnaiji@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 11:38:50 by wnaiji            #+#    #+#             */
-/*   Updated: 2023/06/18 19:41:59 by walidnaiji       ###   ########.fr       */
+/*   Updated: 2023/06/20 12:18:03 by wnaiji           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ t_list	*ft_check_map(int fd);
 int		ft_height_map(int fd);
 void	ft_analysis_map(t_list *map);
 void	ft_free_mapcpy(t_list *map);
+void	ft_check_other_charcarter(t_list *map);
 //ft_flood_fill.c
 t_point	ft_where_is_perso(t_list **map, int *x, int *y);
 t_list	*ft_map_cpy(t_list *map);
